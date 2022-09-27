@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/27 12:47:47 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:28:07 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,76 +22,97 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+// void	rectangle(int x_tmp, int y, int size, t_data* img)
+// {
+// 	int	x;
+
+// 	x = x_tmp;
+// 	while (y < y + size)
+// 	{
+// 		x = x_tmp;
+// 		while (x < x + size)
+// 		{
+// 			my_mlx_pixel_put(img, x, y, 0x0000CC00);
+// 			x++;
+// 		}
+// 		my_mlx_pixel_put(img, x, y, 0x0000CC00);
+// 		y++;
+// 	}
+// }
+
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_data	img;
-	int		x;
-	int		y;
+	// t_data	img;
+	// int		x;
+	// int		y;
 	// int 	x1;
 	// int 	y1;
-	int		i;
+	// int		i;
+	void	*img_upload;
+	char	*relative_path = "./test.xpm";
+	int		img_width;
+	int		img_height;
+	
 
-	y = 5;
 	mlx = mlx_init();
+	img_upload = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
+	// img.img = mlx_new_image(mlx, 1920, 1080);
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
 	
 	// rectangle
-	while (y < 100)
-	{
-		x = 5;
-		while (x < 100)
-		{
-			my_mlx_pixel_put(&img, x, y, 0x0000CC00);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x0000CC00);
-		y++;
-	}
-
+	// rectangle(150, 150,  100, &img);
+	// y = 5;
+	// while (y < 100)
+	// {
+	// 	x = 5;
+	// 	while (x < 100)
+	// 	{
+	// 		my_mlx_pixel_put(&img, x, y, 0x0000CC00);
+	// 		x++;
+	// 	}
+	// 	my_mlx_pixel_put(&img, x, y, 0x0000CC00);
+	// 	y++;
+	// }
 	//triangle
-	x = 205;
-	y = 205;
-	i = 0;
-	while (i < 100)
-	{
-		my_mlx_pixel_put(&img, x + i, y, 0x00FF0000);
-		my_mlx_pixel_put(&img, x + i, y + i, 0x00F00000);
-		my_mlx_pixel_put(&img, x + 100, y + i, 0x00F70000);
-		i++;
-	}
-
-	x = 405;
-	y = 5;
-	while (y < 100)
-	{
-		x = 405;
-		while (x < 500)
-		{
-			my_mlx_pixel_put(&img, x, y, 0x00FFFF00);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x00FFFF00);
-		y++;
-	}
-
-	x = 605;
-	y = 5;
-	while (y < 100)
-	{
-		x = 605;
-		while (x < 700)
-		{
-			my_mlx_pixel_put(&img, x, y, 0x000000CC);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x000000CC);
-		y++;
-	}
-
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	// x = 205;
+	// y = 205;
+	// i = 0;
+	// while (i < 100)
+	// {
+	// 	my_mlx_pixel_put(&img, x + i, y, 0x00FF0000);
+	// 	my_mlx_pixel_put(&img, x + i, y + i, 0x00F00000);
+	// 	my_mlx_pixel_put(&img, x + 100, y + i, 0x00F70000);
+	// 	i++;
+	// }
+	// x = 405;
+	// y = 5;
+	// while (y < 100)
+	// {
+	// 	x = 405;
+	// 	while (x < 500)
+	// 	{
+	// 		my_mlx_pixel_put(&img, x, y, 0x00FFFF00);
+	// 		x++;
+	// 	}
+	// 	my_mlx_pixel_put(&img, x, y, 0x00FFFF00);
+	// 	y++;
+	// }
+	// x = 605;
+	// y = 5;
+	// while (y < 100)
+	// {
+	// 	x = 605;
+	// 	while (x < 700)
+	// 	{
+	// 		my_mlx_pixel_put(&img, x, y, 0x000000CC);
+	// 		x++;
+	// 	}
+	// 	my_mlx_pixel_put(&img, x, y, 0x000000CC);
+	// 	y++;
+	// }
+	mlx_put_image_to_window(mlx, mlx_win, img_upload, 0, 0);
 	mlx_loop(mlx);
 }
