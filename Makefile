@@ -18,8 +18,9 @@ export IMG
 NAME := so_long
 LIBFT_DIR = libft/
 LIBFT_EXEC = ./libft/libft.a
-SRCFILES := so_long.c /
-			error_handling.c
+SRCFILES := so_long.c
+
+			
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
 OBJS := $(SRCFILES:.c=.o) 
@@ -29,7 +30,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft/
 	@make bonus -C libft/ 
-	$(CC) -g $(CFLAGS) $(SRCFILES) $(LIBFT_EXEC) -o $(NAME)
+	$(CC) -g $(CFLAGS) $(SRCFILES) $(LIBFT_EXEC) -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	@echo $(GREEN) "$$IMG"
 clean:
 	# rm -f *.o
