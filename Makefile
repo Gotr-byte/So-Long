@@ -18,7 +18,10 @@ export IMG
 NAME := so_long
 LIBFT_DIR = libft/
 LIBFT_EXEC = ./libft/libft.a
-SRCFILES := so_long.c 
+SRCFILES := \
+			so_long.c 
+# hooking.c 
+# intravid.c		
 
 			
 CC = gcc
