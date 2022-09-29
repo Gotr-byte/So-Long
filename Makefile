@@ -11,6 +11,7 @@ define IMG
 ░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░
 ░░░░░█░░▄▄░░▄▄▄▄░░▄▄░░█░░░░░░░░░░█░░▄▄░░▄▄▄▄░░▄▄░░█░░░░░░░░░░█░░▄▄░░▄▄▄▄░░▄▄░░█░░░░
 ░░░░░█░▄▀█░▄▀░░█░▄▀█░▄▀░░░░░░░░░░█░▄▀█░▄▀░░█░▄▀█░▄▀░░░░░░░░░░█░▄▀█░▄▀░░█░▄▀█░▄▀░░░░
+*Barf*
 
 endef
 export IMG
@@ -18,12 +19,7 @@ export IMG
 NAME := so_long
 LIBFT_DIR = libft/
 LIBFT_EXEC = ./libft/libft.a
-SRCFILES := \
-			so_long.c 
-# hooking.c 
-# intravid.c		
-
-			
+SRCFILES := so_long.c 					
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
 OBJS := $(SRCFILES:.c=.o) 

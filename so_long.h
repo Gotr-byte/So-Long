@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/27 11:57:21 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:16:43 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 # define SO_LONG_H
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
-# include <mlx.h>
 
-typedef struct s_data
+typedef struct s_grid
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-}t_data;
+	int	data;
+	int	pos_x;
+	int pos_y;
+	struct s_grid	*up;
+	struct s_grid	*right;
+	struct s_grid	*down;
+	struct s_grid	*left;
+}	t_grid;
 
 #endif

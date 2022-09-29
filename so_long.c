@@ -6,101 +6,94 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/27 19:21:48 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:23:41 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
+#include <stdio.h>
 
-#include <mlx.h>
+#define grid 48
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+t_grid	*ft_gridnew(int data, int pos_x, int pos_y)
 {
-	char	*dst;
+	t_grid	*tmp;
 
-	dst = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	tmp = (t_grid *)malloc(sizeof(t_grid));
+	if (!tmp)
+		return (NULL);
+	if (tmp)
+	{
+		tmp->data = data;
+		tmp->pos_x = pos_x;
+		tmp->pos_y = pos_y;
+		tmp->up = NULL;
+		tmp->right = NULL;
+		tmp->down = NULL;
+		tmp->left = NULL;
+	}
+	return (tmp);
 }
 
-// void	rectangle(int x_tmp, int y, int size, t_data* img)
+// int	main(void)
 // {
-// 	int	x;
+// 	t_grid	*grid_head;
+// 	t_grid	*traverse;
+// 	t_grid	*grid00;
+// 	t_grid	*grid10;
+// 	t_grid	*grid01;
 
-// 	x = x_tmp;
-// 	while (y < y + size)
-// 	{
-// 		x = x_tmp;
-// 		while (x < x + size)
-// 		{
-// 			my_mlx_pixel_put(img, x, y, 0x0000CC00);
-// 			x++;
-// 		}
-// 		my_mlx_pixel_put(img, x, y, 0x0000CC00);
-// 		y++;
-// 	}
+// 	traverse = NULL;
+// 	grid00 = ft_gridnew(11, 0, 0);
+// 	grid_head = grid00;
+// 	grid10 = ft_gridnew(10, 1, 0);
+// 	grid00->right = grid10;
+// 	grid10->left = grid00;
+// 	grid01 = ft_gridnew(01, 0, 1);
+// 	grid00->down = grid01;
+// 	grid01->up = grid00;
+// 	printf("%d\n", grid_head->data);
+// 	traverse = grid_head;
+// 	traverse = traverse->down;
+// 	printf("%d\n", traverse->data);
+// 	traverse = traverse->up;
+// 	printf("%d\n", traverse->data);
+
 // }
+
+
 
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_data	img;
-	int		x;
-	int		y;
-	// int 	x1;
-	// int 	y1;
-	// int		i;
-	void	*img_upload;
-	char	*relative_path = "./test.xpm";
+	char	*grass_path = "./xpm/grass.xpm";
+	char	*tree_path = "./xpm/tree.xpm";
 	int		img_width;
 	int		img_height;
+	void	*grass;
+	void	*tree;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	mlx = mlx_init();
-	img_upload = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
-	// rectangle
-	// rectangle(150, 150,  100, &img);
-	y = 5;
-	while (y < 100)
+	mlx_win = mlx_new_window(mlx, 500, 500, "Hello world!");
+	grass = mlx_xpm_file_to_image(mlx, grass_path, &img_width, &img_height);
+	tree = mlx_xpm_file_to_image(mlx, tree_path, &img_width, &img_height);
+	while (i < 10)
 	{
-		x = 5;
-		while (x < 100)
-		{
-			my_mlx_pixel_put(&img, x, y, 0x0000CC00);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x0000CC00);
-		y++;
+		mlx_put_image_to_window(mlx, mlx_win, grass, i * grid, j * grid);
+		i++;
 	}
-	y = 45;
-	while (y < 100)
+	i = 0;
+	j = 1;
+	while (i < 10)
 	{
-		x = 45;
-		while (x < 500)
-		{
-			my_mlx_pixel_put(&img, x, y, 0xAAFFFF00);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x08FFFF00);
-		y++;
+		mlx_put_image_to_window(mlx, mlx_win, tree, i * grid, j * grid);
+		i++;
+		j++;
 	}
-	x = 605;
-	y = 5;
-	while (y < 100)
-	{
-		x = 605;
-		while (x < 700)
-		{
-			my_mlx_pixel_put(&img, x, y, 0x000000CC);
-			x++;
-		}
-		my_mlx_pixel_put(&img, x, y, 0x000000CC);
-		y++;
-	}
-	mlx_put_image_to_window(mlx, mlx_win, img_upload, 0, 0);
-	
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
