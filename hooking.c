@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/30 11:42:09 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:31:06 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 // # include "./mlx/mlx.h"
 // #include "unistd.h"
 #define grid 48
-
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	void	*rock;
-}t_vars;
 
 void	destructor(t_vars *mlx)
 {
@@ -44,6 +36,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 126)
 		{
 			printf ("up key pressed\n");
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, i * grid, j * grid);
 			if(i == 0)
 				i = 1;
 			if(j < 10)
@@ -53,6 +46,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 125)
 	{
 		printf ("down key pressed\n");
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, i * grid, j * grid);
 		if(i < 1)
 			i = 1;
 		if (j > 0)
@@ -62,6 +56,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 123)
 	{
 		printf ("left key pressed\n");
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, i * grid, j * grid);
 		if (i > 0)
 			i--;
 		if (j < 1)
@@ -72,6 +67,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 124)
 	{
 		printf ("right key pressed\n");
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, i * grid, j * grid);
 		i++;
 		if (j < 1)
 			j = 1;
@@ -81,17 +77,18 @@ int	key_hook(int keycode, t_vars *mlx)
 	return (0);
 }
 
-int	main(void)
-{
-	t_vars	vars;
-	char	*rock_path = "./xpm/grass.xpm";
-	int		img_width;
-	int		img_height;
+// int	main(void)
+// {
+// 	t_vars	vars;
+// 	char	*rock_path = "./xpm/rock.xpm";
+// 	char	*grass_path = "./xpm/grass.xpm";
+// 	int		img_width;
+// 	int		img_height;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!\n");
-	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
-	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); 
-	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_loop(vars.mlx);
-}
+// 	vars.mlx = mlx_init();
+// 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Steinfeld\n");
+// 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
+// 	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
+// 	mlx_key_hook(vars.win, key_hook, &vars);
+// 	mlx_loop(vars.mlx);
+// }

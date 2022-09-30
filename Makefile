@@ -19,7 +19,10 @@ export IMG
 NAME := so_long
 LIBFT_DIR = libft/
 LIBFT_EXEC = ./libft/libft.a
-SRCFILES := hooking.c
+SRCFILES := so_long.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			hooking.c
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
 OBJS := $(SRCFILES:.c=.o) 

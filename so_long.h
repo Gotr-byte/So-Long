@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/29 14:16:43 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:37:34 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 
-typedef struct s_grid
-{
-	int	data;
-	int	pos_x;
-	int pos_y;
-	struct s_grid	*up;
-	struct s_grid	*right;
-	struct s_grid	*down;
-	struct s_grid	*left;
-}	t_grid;
+#define grid 48
 
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	void	*rock;
+	void	*grass;
+	void	*tree;
+	void	*exit;
+	void	*tulecie;
+}t_vars;
+int	key_hook(int keycode, t_vars *mlx);
+void	destructor(t_vars *mlx);
 #endif

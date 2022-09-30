@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/30 11:31:40 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:40:53 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@
 #define null_pointer 1
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_vars	vars;
+	// void	*mlx;
+	// void	*mlx_win;
 	char	*grass_path = "./xpm/grass.xpm";
 	char	*tree_path = "./xpm/tree.xpm";
 	char	*tulecie_path = "./xpm/tulecie.xpm";
@@ -113,14 +114,14 @@ int	main(void)
 	char	*rock_path = "./xpm/rock.xpm";
 	int		img_width;
 	int		img_height;
-	void	*grass;
-	void	*tree;
-	void	*tulecie;
-	void	*exit;
-	void	*rock;
+	// void	*grass;
+	// void	*tree;
+	// void	*tulecie;
+	// void	*exit;
+	// void	*rock;
 	int		**map;
 	char	*map_data;
-	int		i;
+	int	i;
 	int		j;
 	int		fd_to_read;
 	
@@ -131,8 +132,8 @@ int	main(void)
 	{
 		i = 0;
 		map_data = get_next_line(fd_to_read);
-		map[j-1] = (int *)malloc(ft_strlen(map_data) * sizeof(int));
-		while (i < ft_strlen(map_data))
+		map[j-1] = (int *)malloc(13 * sizeof(int));
+		while (i < 13)
 		{	
 			map[j - 1][i] = map_data[i];
 			i++;
@@ -146,18 +147,18 @@ int	main(void)
 		i = 0;
 		while (i < 13)
 		{
-			printf("value in map[%d][%d], is equal: %d\n", j, i, map[j - 1][i]);
+			printf("value in map[%d][%i], is equal: %d\n", j, i, map[j - 1][i]);
 			i++;
 		}
 		j++;
 	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1000, 500, "Blumenfeld");
-	rock = mlx_xpm_file_to_image(mlx, rock_path, &img_width, &img_height);
-	exit = mlx_xpm_file_to_image(mlx, exit_path, &img_width, &img_height);
-	grass = mlx_xpm_file_to_image(mlx, grass_path, &img_width, &img_height);
-	tree = mlx_xpm_file_to_image(mlx, tree_path, &img_width, &img_height);
-	tulecie = mlx_xpm_file_to_image(mlx, tulecie_path, &img_width, &img_height);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1000, 500, "Blumenfeld");
+	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
+	vars.exit = mlx_xpm_file_to_image(vars.mlx, exit_path, &img_width, &img_height);
+	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
+	vars.tree = mlx_xpm_file_to_image(vars.mlx, tree_path, &img_width, &img_height);
+	vars.tulecie = mlx_xpm_file_to_image(vars.mlx, tulecie_path, &img_width, &img_height);
 	j = 1;
 	while (j < 6)
 	{
@@ -165,23 +166,27 @@ int	main(void)
 		while (i < 13)
 		{
 			if (map[j - 1][i] == '0')
-				mlx_put_image_to_window(mlx, mlx_win, grass, i * grid, j * grid);
+				mlx_put_image_to_window(vars.mlx, vars.win, vars.grass, i * grid, j * grid);
 			else if (map[j - 1][i] == '1')
-				mlx_put_image_to_window(mlx, mlx_win, tree, i * grid, j * grid);
+				mlx_put_image_to_window(vars.mlx, vars.win, vars.tree, i * grid, j * grid);
 			else if (map[j - 1][i] == 'C')
-				mlx_put_image_to_window(mlx, mlx_win, tulecie, i * grid, j * grid);
+				mlx_put_image_to_window(vars.mlx, vars.win, vars.tulecie, i * grid, j * grid);
 			else if (map[j - 1][i] == 'E')
-				mlx_put_image_to_window(mlx, mlx_win, exit, i * grid, j * grid);
+				mlx_put_image_to_window(vars.mlx, vars.win, vars.exit, i * grid, j * grid);
 			else if (map[j - 1][i] == 'P')
-				mlx_put_image_to_window(mlx, mlx_win, rock, i * grid, j * grid);
+				mlx_put_image_to_window(vars.mlx, vars.win, vars.rock, i * grid, j * grid);
 			i++;
 		}
 		j++;
 	}
+	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
+	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
+	mlx_key_hook(vars.win, key_hook, &vars);
+
 	free(*map);
 	free(map);
 	close(fd_to_read);
-	mlx_loop(mlx);
+	mlx_loop(vars.mlx);
 }
 
 // int main(void)
