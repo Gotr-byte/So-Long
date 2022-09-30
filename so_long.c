@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/29 20:46:45 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:31:40 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@
 // 	mlx_loop(mlx);
 // }
 
+//need a function that counts the number of lines in the file
+//need a map checker
+//need movement hookers
+
 #define null_pointer 1
 int	main(void)
 {
@@ -121,14 +125,14 @@ int	main(void)
 	int		fd_to_read;
 	
 	fd_to_read = open("map.ber", O_RDONLY);
-	map = (int **)malloc(5* sizeof(int *));
+	map = (int **)malloc(5 * sizeof(int *));
 	j = 1;
 	while (j < 6)
 	{
 		i = 0;
 		map_data = get_next_line(fd_to_read);
-		map[j-1] = (int *)malloc(13 * sizeof(int));
-		while (i < 13)
+		map[j-1] = (int *)malloc(ft_strlen(map_data) * sizeof(int));
+		while (i < ft_strlen(map_data))
 		{	
 			map[j - 1][i] = map_data[i];
 			i++;
@@ -179,3 +183,24 @@ int	main(void)
 	close(fd_to_read);
 	mlx_loop(mlx);
 }
+
+// int main(void)
+// {
+// 	int		fd_to_read;
+	
+// 	fd_to_read = open("map.ber", O_RDONLY);
+// 	while(get_next_line(fd_to_read))
+// 		printf("%d\n", fd_to_read);
+// 	close(fd_to_read);
+// 	fd_to_read = open("map.ber", O_RDONLY);
+// 	while(1)
+// 	{
+// 		if(get_next_line(fd_to_read)==NULL)
+// 			{
+			// 	break;
+			// 	i++;
+			// }
+// 		else	
+// 			printf("read\n");
+// 	}
+// }
