@@ -1,3 +1,7 @@
+# so_long.c \
+# get_next_line.c \
+# get_next_line_utils.c \
+# hooking.c
 
 define IMG
 
@@ -23,6 +27,7 @@ SRCFILES := so_long.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 			hooking.c
+
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
 OBJS := $(SRCFILES:.c=.o) 
