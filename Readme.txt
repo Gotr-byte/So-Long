@@ -1,4 +1,1 @@
-//instead of piling images on top of one another you should consider making
- a table with values and then changing the values accordingly
-
- in order to collect something you need to 
+Follow a patern of writing, keeping the code clean and without memory leaks. Always run with leaks.

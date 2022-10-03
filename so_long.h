@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 12:20:40 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:37:13 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # define GRID 48
 # define NULL_VAL 1
+# define TRUE 1
 
 typedef struct s_vars
 {
