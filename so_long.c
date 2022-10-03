@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 12:46:42 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:38:04 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,85 +28,6 @@ void	liberator(int	**map, int map_height)
 	}
 }
 
-int	map_height(void)
-{
-	int		fd_to_read_height;
-	int		ret_height;
-	char	*tmp;
-
-	fd_to_read_height = open("map.ber", O_RDONLY);
-	ret_height = 0;
-	while (TRUE)
-	{
-		tmp = get_next_line(fd_to_read_height);
-		if (tmp == NULL)
-		{
-			free(tmp);
-			break ;
-		}
-		free(tmp);
-		ret_height++;
-	}
-	close(fd_to_read_height);
-	return (ret_height);
-}
-
-int	map_width(void)
-{
-	int		fd_to_read_width;
-	char	*tmp;
-	int		ret_width;
-
-	fd_to_read_width = open("map.ber", O_RDONLY);
-	tmp = get_next_line(fd_to_read_width);
-	ret_width = ft_strlen(tmp);
-	free(tmp);
-	close(fd_to_read_width);
-	return (ret_width - NULL_VAL);
-}
-
-int	**map_reader()
-{
-	int		**map;
-	int		map_y;
-	int		map_x;
-	int		fd_to_read;
-	char	*map_data;
-	int 	i;
-	int 	j;
-
-	map_y = map_height();
-	map_x = map_width();
-	fd_to_read = open("map.ber", O_RDONLY);
-	map = (int **)ft_calloc(map_y, sizeof(int *));
-	j = 0;
-	while (j < (map_y))
-	{
-		i = 0;
-		map_data = get_next_line(fd_to_read);
-		map[j] = (int *)ft_calloc(map_x, sizeof(int));
-		while (i < (map_x))
-		{	
-			map[j][i] = map_data[i];
-			i++;
-		}
-		free(map_data);
-		j++;
-	}
-	j = 0;
-	while (j < (map_y))
-	{
-		i = 0;
-		while (i < (map_x))
-		{
-			printf("value in map[%d][%i], is equal: %d\n", j, i, map[j][i]);
-			i++;
-		}
-		j++;
-	}
-	close(fd_to_read);
-	return (map);
-}
 // we should free the whole array it has some leaks
 int	main(void)
 {
@@ -118,50 +39,55 @@ int	main(void)
 	char	*rock_path = "./xpm/rock.xpm";
 	int		img_width;
 	int		img_height;
-	int		**map;
-	// char	*map_data;
 	int		i;
 	int		j;
-	// int		fd_to_read;
-	int		map_y;
-	int		map_x;
+	int		x;
+	int		y;
 
-	map_y = map_height();
-	map_x = map_width();
-	// fd_to_read = open("map.ber", O_RDONLY);
-	map = map_reader();
-	map[3][13] = 48;
+	vars.map_y = map_height();
+	vars.map_x = map_width();
+	vars.map = map_reader();
+	y = 0;
+	while (y < (vars.map_y))
+	{
+		x = 0;
+		while (x < (vars.map_x))
+		{
+			printf("map[%d][%d]: %d\n", y, x, vars.map[y][x]);
+			x++;
+		}
+		y++;
+	}
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, map_x * GRID, map_y * GRID, "Blumenfeld");
+	vars.win = mlx_new_window(vars.mlx, vars.map_x * GRID, vars.map_y * GRID, "Blumenfeld");
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
 	vars.exit = mlx_xpm_file_to_image(vars.mlx, exit_path, &img_width, &img_height);
 	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
 	vars.tree = mlx_xpm_file_to_image(vars.mlx, tree_path, &img_width, &img_height);
 	vars.tulecie = mlx_xpm_file_to_image(vars.mlx, tulecie_path, &img_width, &img_height);
+	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
+	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
+	mlx_key_hook(vars.win, key_hook, &vars);
 	j = 0;
-	while (j < (map_y))
+	while (j < (vars.map_y))
 	{
 		i = 0;
-		while (i < (map_x))
+		while (i < (vars.map_x))
 		{
-			if (map[j][i] == '0')
+			if (vars.map[j][i] == '0')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.grass, i * GRID, j * GRID);
-			else if (map[j][i] == '1')
+			else if (vars.map[j][i] == '1')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.tree, i * GRID, j * GRID);
-			else if (map[j][i] == 'C')
+			else if (vars.map[j][i] == 'C')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.tulecie, i * GRID, j * GRID);
-			else if (map[j][i] == 'E')
+			else if (vars.map[j][i] == 'E')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.exit, i * GRID, j * GRID);
-			else if (map[j][i] == 'P')
+			else if (vars.map[j][i] == 'P')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.rock, i * GRID, j * GRID);
 			i++;
 		}
 		j++;
 	}
-	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
-	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
-	mlx_key_hook(vars.win, key_hook, &vars);
-	liberator(map, map_y);
-	// close(fd_to_read);
+	liberator(vars.map, vars.map_y);
 	mlx_loop(vars.mlx);
 }

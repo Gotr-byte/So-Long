@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 12:37:13 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:39:42 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,7 @@ typedef struct s_vars
 
 int		key_hook(int keycode, t_vars *mlx);
 void	destructor(t_vars *mlx);
+int		**map_reader();
+int		map_height(void);
+int		map_width(void);
 #endif
