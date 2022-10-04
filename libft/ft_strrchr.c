@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 19:07:27 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/05/26 12:20:21 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:53:48 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,17 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
-/*
-int main(void)
-{
-	char *v;
-	char *p;
-	// char aac[100] = "aacaac";
-	
-	str2[] = "bonjour";
-	
-	
-	v = ft_strrchr(str2, 's');
-	p = strrchr(str2, 's');
-	printf ("ft_strrchr: %p\n", v);
-	printf ("strrchr: %p\n", p);	
-	
+
+// int main(void)
+// {
+// 	char *v;
+// 	char *p;
+// 	// char aac[100] = "aacaac";
+// 	char str2[] = "bonjourss";
+// 	v = ft_strrchr(str2, 's');
+// 	p = strrchr(str2, 's');
+// 	printf ("ft_strrchr: %p\n", v);
+// 	printf ("strrchr: %p\n", p);	
 	// v = ft_strrchr(aac, 'c');
 	// p = strrchr(aac, 'c');
 	// printf ("ft_strrchr: %p\n", v);
@@ -57,5 +53,4 @@ int main(void)
 	// char s[] = "tripouille";
 	// char s2[] = "ltripouiel";
 	// ft_strrchr(str2, 's')
-}
-*/
+// }

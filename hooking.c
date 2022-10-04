@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 11:15:07 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:27:31 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	int			y;
 	int			fd_rw;
 
+	map_refresh(*mlx);
 	mlx->map = map_reader();
 	fd_rw = open("rw_file.ber", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (keycode)

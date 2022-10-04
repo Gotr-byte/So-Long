@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:29:12 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 12:44:22 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:28:19 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	map_width(void)
 
 char	**map_reader(void)
 {
-char		**map;
+	char		**map;
 	int		map_y;
 	int		map_x;
 	int		fd_to_read;
@@ -81,36 +81,26 @@ char		**map;
 	return (map);
 }
 
-char	**map_refresh(void)
+void	**map_refresh(t_vars mlx)
 {
-	char		**map;
-	int		map_y;
-	int		map_x;
-	int		fd_to_read;
-	char	*map_data;
-	int 	i;
-	int 	j;
+	char		**map_tmp;
+	int			x;
+	int			y;
 
-	map_y = map_height();
-	map_x = map_width();
-	fd_to_read = open("rw_file.ber", O_RDONLY);
-	map = (char **)ft_calloc(map_y, sizeof(char *));
-	j = 0;
-	while (j < (map_y))
+	map_tmp = **map_reader();
+	y = 0;
+	while (y < mlx.map_y)
 	{
-		i = 0;
-		map_data = get_next_line(fd_to_read);
-		map[j] = (char *)ft_calloc(map_x, sizeof(char));
-		while (i < (map_x))
-		{	
-			map[j][i] = map_data[i];
-			i++;
+		x = 0;
+		while (x < (mlx.map_x))
+		{
+			write(fd_rw, &mlx.map[y][x], 1);
+			if (x == (mlx.map_x -1))
+				write(fd_rw, "\n", 1);
+			printf("map[%d][%d]: %d\n", y, x, mlx.map[y][x]);
+			x++;
 		}
-		free(map_data);
-		j++;
+		y++;
 	}
-	j = 0;
-	close(fd_to_read);
-	return (map);
+	liberator(map_tmp, mlx->map_y);
 }
-

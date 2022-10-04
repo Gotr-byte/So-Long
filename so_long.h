@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 13:04:16 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:24:41 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**map_reader(void);
 int		map_height(void);
 int		map_width(void);
 void	liberator(char	**map, int map_height);
-char	**map_refresh(void);
+void	**map_refresh(t_vars mlx);
 void	check_nort_wall(t_vars vars);
 void	check_west_wall(t_vars vars);
 void	check_east_wall(t_vars vars);
