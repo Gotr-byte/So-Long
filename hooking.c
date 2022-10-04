@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 15:27:31 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:46:17 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	int			y;
 	int			fd_rw;
 
-	map_refresh(*mlx);
+	// map_refresh(*mlx);
 	mlx->map = map_reader();
 	fd_rw = open("rw_file.ber", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (keycode)
@@ -43,10 +43,10 @@ int	key_hook(int keycode, t_vars *mlx)
 		{
 			mlx->map[j][i] = '0';
 			j--;
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
@@ -69,10 +69,10 @@ int	key_hook(int keycode, t_vars *mlx)
 		{
 			mlx->map[j][i] = '0';
 			j++;
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
@@ -95,10 +95,10 @@ int	key_hook(int keycode, t_vars *mlx)
 		{
 			mlx->map[j][i] = '0';
 			i--;
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
@@ -121,10 +121,10 @@ int	key_hook(int keycode, t_vars *mlx)
 		{
 			mlx->map[j][i] = '0';
 			i++;
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'C';
+			mlx->map[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{

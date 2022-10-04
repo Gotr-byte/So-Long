@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 13:33:09 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:55:17 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int	main(void)
 	check_east_wall(vars);
 	check_south_wall(vars);
 	// check_west_wall(vars);
+	num_characters(vars);
+	num_exits(vars);
+	num_collectables(vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x * GRID, vars.map_y * GRID, "Blumenfeld");
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);

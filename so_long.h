@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 15:24:41 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:50:57 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,7 @@ void	check_west_wall(t_vars vars);
 void	check_east_wall(t_vars vars);
 void	check_south_wall(t_vars vars);
 void	check_rect(t_vars vars);
+void	num_characters(t_vars vars);
+void	num_exits(t_vars vars);
+int		num_collectables(t_vars vars);
 #endif

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:23:52 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 13:25:03 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:53:18 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	ft_strlen_int(const char *s)
 	}
 	return (i);
 }
-
 
 void	check_rect(t_vars vars)
 {
@@ -52,4 +51,103 @@ void	check_rect(t_vars vars)
 		free(tmp);
 	}
 	close(fd_check);
+}
+
+static void err_msg_many(void)
+{
+	write (2, "Map error: to many characters\n", 30);
+	exit (2);
+}
+
+static void err_msg_exits(void)
+{
+	write (2, "Map error: to many exits\n", 26);
+	exit (2);
+}
+
+//checks if there is one character value in the map
+void	num_characters(t_vars vars)
+{
+	int		x;
+	int		y;
+	int		count;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	while (y < vars.map_y)
+	{
+		x = 0;
+		while (x < vars.map_x)
+		{
+			if (vars.map[y][x] == 'P')
+				count++;
+			if (count > 1)
+				err_msg_many();
+			x++;
+		}
+		y++;
+	}
+	if (count < 1)
+	{
+		write (2, "Map error: to few characters\n", 30);
+		exit (2);
+	}
+}
+
+int	num_collectables(t_vars vars)
+{
+	int		x;
+	int		y;
+	int		count;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	while (y < vars.map_y)
+	{
+		x = 0;
+		while (x < vars.map_x)
+		{
+			if (vars.map[y][x] == 'C')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	if (count < 1)
+	{
+		write (2, "Map error: to few collectables\n", 32);
+		exit (2);
+	}
+	return (count);
+}
+
+void	num_exits(t_vars vars)
+{
+	int		x;
+	int		y;
+	int		count;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	while (y < vars.map_y)
+	{
+		x = 0;
+		while (x < vars.map_x)
+		{
+			if (vars.map[y][x] == 'E')
+				count++;
+			if (count > 1)
+				err_msg_exits();
+			x++;
+		}
+		y++;
+	}
+	if (count < 1)
+	{
+		write (2, "Map error: to few exits\n", 25);
+		exit (2);
+	}
 }
