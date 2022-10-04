@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 17:38:04 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:52:35 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 //need a function that counts the number of lines in the file
 //need a map checker
 //need movement hookers
-
-void	liberator(int	**map, int map_height)
-{
-	int	j;
-
-	j = 0;
-	while (j < map_height)
-	{
-		free(map[j]);
-		j++;
-	}
-}
-
 // we should free the whole array it has some leaks
 int	main(void)
 {
