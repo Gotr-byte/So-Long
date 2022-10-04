@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 11:19:05 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:16:24 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 //need a map checker
 //need movement hookers
 // we should free the whole array it has some leaks
+
+// void init_assets(t_vars vars)
+// {
+	
+// }
+
 int	main(void)
 {
 	t_vars	vars;
@@ -28,23 +34,17 @@ int	main(void)
 	int		img_height;
 	int		i;
 	int		j;
-	int		x;
-	int		y;
+	// int		x;
+	// int		y;
 
-	vars.map_y = map_height();
 	vars.map_x = map_width();
+	vars.map_y = map_height();
 	vars.map = map_reader();
-	y = 0;
-	while (y < (vars.map_y))
-	{
-		x = 0;
-		while (x < (vars.map_x))
-		{
-			printf("map[%d][%d]: %d\n", y, x, vars.map[y][x]);
-			x++;
-		}
-		y++;
-	}
+	check_rect(vars);
+	check_nort_wall(vars);
+	check_east_wall(vars);
+	check_south_wall(vars);
+	check_west_wall(vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x * GRID, vars.map_y * GRID, "Blumenfeld");
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
@@ -55,7 +55,6 @@ int	main(void)
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
 	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
 	mlx_key_hook(vars.win, key_hook, &vars);
-	vars.map = map_refresh();
 	j = 0;
 	while (j < (vars.map_y))
 	{

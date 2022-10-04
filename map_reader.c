@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:29:12 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 11:19:31 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:44:22 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	map_width(void)
 
 char	**map_reader(void)
 {
-	char		**map;
+char		**map;
 	int		map_y;
 	int		map_x;
 	int		fd_to_read;
@@ -59,8 +59,8 @@ char	**map_reader(void)
 	int 	i;
 	int 	j;
 
-	map_y = map_height();
 	map_x = map_width();
+	map_y = map_height();
 	fd_to_read = open("map.ber", O_RDONLY);
 	map = (char **)ft_calloc(map_y, sizeof(char *));
 	j = 0;
@@ -77,7 +77,6 @@ char	**map_reader(void)
 		free(map_data);
 		j++;
 	}
-	j = 0;
 	close(fd_to_read);
 	return (map);
 }
@@ -114,3 +113,4 @@ char	**map_refresh(void)
 	close(fd_to_read);
 	return (map);
 }
+

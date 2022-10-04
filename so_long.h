@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 11:19:37 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:04:16 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,21 @@ typedef struct s_vars
 	void	*tree;
 	void	*exit;
 	void	*tulecie;
-	char		**map;
+	char	**map;
 	int		map_x;
 	int		map_y;
 }t_vars;
 
 int		key_hook(int keycode, t_vars *mlx);
 void	destructor(t_vars *mlx);
-char	**map_reader();
+char	**map_reader(void);
 int		map_height(void);
 int		map_width(void);
 void	liberator(char	**map, int map_height);
 char	**map_refresh(void);
+void	check_nort_wall(t_vars vars);
+void	check_west_wall(t_vars vars);
+void	check_east_wall(t_vars vars);
+void	check_south_wall(t_vars vars);
+void	check_rect(t_vars vars);
 #endif
