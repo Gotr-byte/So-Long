@@ -29,7 +29,8 @@ SRCFILES := so_long.c \
 			hooking.c \
 			map_reader.c \
 			liberator.c \
-			map_checker.c
+			map_checker.c \
+			map_checker_ii.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

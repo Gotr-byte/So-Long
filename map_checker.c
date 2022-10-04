@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:11:15 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 13:15:33 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:24:35 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,46 +82,4 @@ void	check_south_wall(t_vars vars)
 		}
 		x++;
 	}
-}
-
-int	ft_strlen_int(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-
-void check_rect(t_vars vars)
-{
-	int		y;
-	int		fd_check;
-	char	*tmp;
-	int		check_val;
-
-	fd_check = open("map.ber", O_RDONLY);
-	y = 0;
-	while (y < vars.map_y)
-	{
-		tmp = get_next_line(fd_check);
-		if(y == vars.map_y - 1)
-			check_val = ft_strlen_int(tmp);
-		else
-			check_val = ft_strlen_int(tmp) - NULL_VAL;
-		if(vars.map_x != check_val)
-			{
-				free(tmp);
-				close(fd_check);
-				write(2, "Error: invalid map shape\n", 26);
-				exit (2);
-			}
-		y++;
-		free(tmp);
-	}
-	close(fd_check);
 }
