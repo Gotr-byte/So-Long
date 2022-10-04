@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 09:47:36 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:15:07 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int	key_hook(int keycode, t_vars *mlx)
 	static int	j;
 	int			x;
 	int			y;
+	int			fd_rw;
 
 	mlx->map = map_reader();
+	fd_rw = open("rw_file.ber", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (keycode)
 	{
 		printf ("xp gained: %i\n", ++xp);
@@ -50,6 +52,9 @@ int	key_hook(int keycode, t_vars *mlx)
 			x = 0;
 		while (x < (mlx->map_x))
 		{
+			write(fd_rw, &mlx->map[y][x], 1);
+			if(x == (mlx->map_x -1))
+				write(fd_rw, "\n", 1);
 			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
 			x++;
 		}
@@ -73,6 +78,9 @@ int	key_hook(int keycode, t_vars *mlx)
 			x = 0;
 		while (x < (mlx->map_x))
 		{
+			write(fd_rw, &mlx->map[y][x], 1);
+			if(x == (mlx->map_x -1))
+				write(fd_rw, "\n", 1);
 			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
 			x++;
 		}
@@ -96,6 +104,9 @@ int	key_hook(int keycode, t_vars *mlx)
 			x = 0;
 		while (x < (mlx->map_x))
 		{
+			write(fd_rw, &mlx->map[y][x], 1);
+			if(x == (mlx->map_x -1))
+				write(fd_rw, "\n", 1);
 			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
 			x++;
 		}
@@ -119,6 +130,9 @@ int	key_hook(int keycode, t_vars *mlx)
 			x = 0;
 		while (x < (mlx->map_x))
 		{
+			write(fd_rw, &mlx->map[y][x], 1);
+			if(x == (mlx->map_x -1))
+				write(fd_rw, "\n", 1);
 			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
 			x++;
 		}

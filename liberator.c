@@ -6,13 +6,13 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:51:23 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 17:51:38 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:33:43 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	liberator(int	**map, int map_height)
+void	liberator(char	**map, int map_height)
 {
 	int	j;
 

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/03 17:52:35 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:19:05 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(void)
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
 	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
 	mlx_key_hook(vars.win, key_hook, &vars);
+	vars.map = map_refresh();
 	j = 0;
 	while (j < (vars.map_y))
 	{
