@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/05 18:34:19 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:58:19 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int	main(void)
 	char	*rock_path = "./xpm/rock.xpm";
 	int		img_width;
 	int		img_height;
-	int		tmp_collect;
+	// int		tmp_collect;
 	int		i;
 	int		j;
+	int 	num_exit;
 
 	vars.map_x = map_width();
 	vars.map_y = map_height();
@@ -47,9 +48,12 @@ int	main(void)
 	// num_characters(vars);
 	// num_exits(vars);
 	vars.num_collectables = num_collectables(vars);
-	tmp_collect = check_path(vars, 5, 1, 0);
-	printf("num collectables: %d \n", vars.num_collectables);
-	printf("num_collectables_tmp: %d\n", tmp_collect);
+	// tmp_collect = check_path(vars, 5, 1, 0);
+	num_exit = 0;
+	num_exit = check_path_exit(vars, 5, 1, 0);
+	printf("nun exits in path: %d\n", num_exit);
+	// printf("num collectables: %d \n", vars.num_collectables);
+	// printf("num_collectables_tmp: %d\n", tmp_collect);
 	liberator(vars.map, vars.map_y);
 	return (0);
 	vars.mlx = mlx_init();

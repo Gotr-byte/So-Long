@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/05 18:34:44 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:45:18 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	check_rect(t_vars vars);
 void	num_characters(t_vars vars);
 void	num_exits(t_vars vars);
 int		num_collectables(t_vars vars);
-int	check_path(t_vars vars, int x, int y, int num_collectables_tmp);
+int		check_path(t_vars vars, int x, int y, int num_collectables_tmp);
+int		check_path_exit(t_vars vars, int x, int y, int num_exit);
 #endif
