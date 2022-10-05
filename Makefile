@@ -26,11 +26,12 @@ LIBFT_EXEC = ./libft/libft.a
 SRCFILES := so_long.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			hooking.c \
 			map_reader.c \
 			liberator.c \
 			map_checker.c \
-			map_checker_ii.c
+			map_checker_ii.c \
+			cross_mask.c \
+			check_path.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

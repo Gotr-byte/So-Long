@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 20:50:57 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:34:44 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ typedef struct s_vars
 	void	*exit;
 	void	*tulecie;
 	char	**map;
+	int		num_collectables;
 	int		map_x;
 	int		map_y;
 }t_vars;
 
-int		key_hook(int keycode, t_vars *mlx);
+// int		key_hook(int keycode, t_vars *mlx);
+int	key_hook_mask(int keycode, t_vars *mlx);
 void	destructor(t_vars *mlx);
 char	**map_reader(void);
 int		map_height(void);
@@ -49,4 +51,5 @@ void	check_rect(t_vars vars);
 void	num_characters(t_vars vars);
 void	num_exits(t_vars vars);
 int		num_collectables(t_vars vars);
+int	check_path(t_vars vars, int x, int y, int num_collectables_tmp);
 #endif

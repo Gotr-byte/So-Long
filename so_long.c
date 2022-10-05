@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 20:55:17 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:34:19 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,26 @@ int	main(void)
 	char	*rock_path = "./xpm/rock.xpm";
 	int		img_width;
 	int		img_height;
+	int		tmp_collect;
 	int		i;
 	int		j;
-	// int		x;
-	// int		y;
 
 	vars.map_x = map_width();
 	vars.map_y = map_height();
 	vars.map = map_reader();
-	check_rect(vars);
 	// check_nort_wall(vars);
-	check_east_wall(vars);
-	check_south_wall(vars);
 	// check_west_wall(vars);
-	num_characters(vars);
-	num_exits(vars);
-	num_collectables(vars);
+	// check_east_wall(vars);
+	// check_south_wall(vars);
+	// check_rect(vars);
+	// num_characters(vars);
+	// num_exits(vars);
+	vars.num_collectables = num_collectables(vars);
+	tmp_collect = check_path(vars, 5, 1, 0);
+	printf("num collectables: %d \n", vars.num_collectables);
+	printf("num_collectables_tmp: %d\n", tmp_collect);
+	liberator(vars.map, vars.map_y);
+	return (0);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x * GRID, vars.map_y * GRID, "Blumenfeld");
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
@@ -57,7 +61,7 @@ int	main(void)
 	vars.tulecie = mlx_xpm_file_to_image(vars.mlx, tulecie_path, &img_width, &img_height);
 	vars.rock = mlx_xpm_file_to_image(vars.mlx, rock_path, &img_width, &img_height);
 	vars.grass = mlx_xpm_file_to_image(vars.mlx, grass_path, &img_width, &img_height);
-	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_key_hook(vars.win, key_hook_mask, &vars);
 	j = 0;
 	while (j < (vars.map_y))
 	{

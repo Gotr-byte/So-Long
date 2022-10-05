@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:51:23 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 10:33:43 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:37:09 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	liberator(char	**map, int map_height)
 
 	j = 0;
 	while (j < map_height)
-	{
-		free(map[j]);
-		j++;
-	}
+		{
+			free(map[j]);
+			j++;
+		}
+		free(map);
 }
