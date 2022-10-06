@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:11:15 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 13:24:35 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:38:16 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_nort_wall(t_vars vars)
 	y = 0;
 	while (x < vars.map_x)
 	{
-		if (vars.map[y][x] != '1')
+		if (vars.m[y][x] != '1')
 		{
 			write(2, "Error: invalid map\n", 20);
 			exit (2);
@@ -39,7 +39,7 @@ void	check_west_wall(t_vars vars)
 	y = 0;
 	while (y < vars.map_y)
 	{
-		if (vars.map[y][x] != '1')
+		if (vars.m[y][x] != '1')
 		{
 			write(2, "Error: invalid map\n", 20);
 			exit (2);
@@ -57,7 +57,7 @@ void	check_east_wall(t_vars vars)
 	y = 0;
 	while (y < vars.map_y)
 	{
-		if (vars.map[y][x] != '1')
+		if (vars.m[y][x] != '1')
 		{
 			write(2, "Error: invalid map\n", 20);
 			exit (2);
@@ -75,7 +75,7 @@ void	check_south_wall(t_vars vars)
 	y = vars.map_y - NULL_VAL;
 	while (x < vars.map_x)
 	{
-		if (vars.map[y][x] != '1')
+		if (vars.m[y][x] != '1')
 		{
 			write(2, "Error: invalid map\n", 20);
 			exit (2);

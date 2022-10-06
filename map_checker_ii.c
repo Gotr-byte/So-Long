@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:23:52 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 20:53:18 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:39:03 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	num_characters(t_vars vars)
 		x = 0;
 		while (x < vars.map_x)
 		{
-			if (vars.map[y][x] == 'P')
+			if (vars.m[y][x] == 'P')
 				count++;
 			if (count > 1)
 				err_msg_many();
@@ -109,7 +109,7 @@ int	num_collectables(t_vars vars)
 		x = 0;
 		while (x < vars.map_x)
 		{
-			if (vars.map[y][x] == 'C')
+			if (vars.m[y][x] == 'C')
 				count++;
 			x++;
 		}
@@ -137,7 +137,7 @@ void	num_exits(t_vars vars)
 		x = 0;
 		while (x < vars.map_x)
 		{
-			if (vars.map[y][x] == 'E')
+			if (vars.m[y][x] == 'E')
 				count++;
 			if (count > 1)
 				err_msg_exits();

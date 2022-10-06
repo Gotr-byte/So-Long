@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/05 19:58:19 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:02:26 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,32 @@
 
 // void init_assets(t_vars vars)
 // {
-	
 // }
+
+void	full_map_check(t_vars vars)
+{
+	int	tmp_collect;
+	int	num_exit;
+
+	check_nort_wall(vars);
+	check_west_wall(vars);
+	check_east_wall(vars);
+	check_south_wall(vars);
+	check_rect(vars);
+	num_characters(vars);
+	num_exits(vars);
+	vars.num_collectables = num_collectables(vars);
+	tmp_collect = check_path(vars, 5, 1, 0);
+	num_exit = 0;
+	liberator(vars.m, vars.map_y);
+	vars.m = map_reader();
+	num_exit = check_path_exit(vars, 5, 1, 0);
+	liberator(vars.m, vars.map_y);
+	vars.m = map_reader();
+	printf("nun exits in path: %d\n", num_exit);
+	printf("num collectables: %d \n", vars.num_collectables);
+	printf("num_collectables_tmp: %d\n", tmp_collect);
+}
 
 int	main(void)
 {
@@ -32,29 +56,13 @@ int	main(void)
 	char	*rock_path = "./xpm/rock.xpm";
 	int		img_width;
 	int		img_height;
-	// int		tmp_collect;
 	int		i;
 	int		j;
-	int 	num_exit;
 
 	vars.map_x = map_width();
 	vars.map_y = map_height();
-	vars.map = map_reader();
-	// check_nort_wall(vars);
-	// check_west_wall(vars);
-	// check_east_wall(vars);
-	// check_south_wall(vars);
-	// check_rect(vars);
-	// num_characters(vars);
-	// num_exits(vars);
-	vars.num_collectables = num_collectables(vars);
-	// tmp_collect = check_path(vars, 5, 1, 0);
-	num_exit = 0;
-	num_exit = check_path_exit(vars, 5, 1, 0);
-	printf("nun exits in path: %d\n", num_exit);
-	// printf("num collectables: %d \n", vars.num_collectables);
-	// printf("num_collectables_tmp: %d\n", tmp_collect);
-	liberator(vars.map, vars.map_y);
+	vars.m = map_reader();
+	full_map_check(vars);
 	return (0);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x * GRID, vars.map_y * GRID, "Blumenfeld");
@@ -72,20 +80,20 @@ int	main(void)
 		i = 0;
 		while (i < (vars.map_x))
 		{
-			if (vars.map[j][i] == '0')
+			if (vars.m[j][i] == '0')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.grass, i * GRID, j * GRID);
-			else if (vars.map[j][i] == '1')
+			else if (vars.m[j][i] == '1')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.tree, i * GRID, j * GRID);
-			else if (vars.map[j][i] == 'C')
+			else if (vars.m[j][i] == 'C')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.tulecie, i * GRID, j * GRID);
-			else if (vars.map[j][i] == 'E')
+			else if (vars.m[j][i] == 'E')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.exit, i * GRID, j * GRID);
-			else if (vars.map[j][i] == 'P')
+			else if (vars.m[j][i] == 'P')
 				mlx_put_image_to_window(vars.mlx, vars.win, vars.rock, i * GRID, j * GRID);
 			i++;
 		}
 		j++;
 	}
-	liberator(vars.map, vars.map_y);
+	liberator(vars.m, vars.map_y);
 	mlx_loop(vars.mlx);
 }

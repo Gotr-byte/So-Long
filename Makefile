@@ -30,7 +30,6 @@ SRCFILES := so_long.c \
 			liberator.c \
 			map_checker.c \
 			map_checker_ii.c \
-			cross_mask.c \
 			check_path.c
 
 CC = gcc

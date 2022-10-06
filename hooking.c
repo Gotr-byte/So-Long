@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 20:46:17 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:40:42 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, t_vars *mlx)
 	int			fd_rw;
 
 	// map_refresh(*mlx);
-	mlx->map = map_reader();
+	mlx->m = map_reader();
 	fd_rw = open("rw_file.ber", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (keycode)
 	{
@@ -39,24 +39,24 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 126)
 	{
 		printf ("up key pressed\n");
-		if(j > 0 && mlx->map[j - 1][i] != '1')
+		if(j > 0 && mlx->m[j - 1][i] != '1')
 		{
-			mlx->map[j][i] = '0';
+			mlx->m[j][i] = '0';
 			j--;
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
 			x = 0;
 		while (x < (mlx->map_x))
 		{
-			write(fd_rw, &mlx->map[y][x], 1);
+			write(fd_rw, &mlx->m[y][x], 1);
 			if(x == (mlx->map_x -1))
 				write(fd_rw, "\n", 1);
-			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
+			printf("map[%d][%d]: %d\n", y, x, mlx->m[y][x]);
 			x++;
 		}
 		y++;
@@ -65,24 +65,24 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 125)
 	{
 		printf ("down key pressed\n");
-		if (j < mlx->map_y && mlx->map[j + 1][i] != '1')
+		if (j < mlx->map_y && mlx->m[j + 1][i] != '1')
 		{
-			mlx->map[j][i] = '0';
+			mlx->m[j][i] = '0';
 			j++;
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
 			x = 0;
 		while (x < (mlx->map_x))
 		{
-			write(fd_rw, &mlx->map[y][x], 1);
+			write(fd_rw, &mlx->m[y][x], 1);
 			if(x == (mlx->map_x -1))
 				write(fd_rw, "\n", 1);
-			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
+			printf("map[%d][%d]: %d\n", y, x, mlx->m[y][x]);
 			x++;
 		}
 		y++;
@@ -91,24 +91,24 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 123)
 	{
 		printf ("left key pressed\n");
-		if (i > 0 && mlx->map[j][i - 1] != '1')
+		if (i > 0 && mlx->m[j][i - 1] != '1')
 		{
-			mlx->map[j][i] = '0';
+			mlx->m[j][i] = '0';
 			i--;
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
 			x = 0;
 		while (x < (mlx->map_x))
 		{
-			write(fd_rw, &mlx->map[y][x], 1);
+			write(fd_rw, &mlx->m[y][x], 1);
 			if(x == (mlx->map_x -1))
 				write(fd_rw, "\n", 1);
-			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
+			printf("map[%d][%d]: %d\n", y, x, mlx->m[y][x]);
 			x++;
 		}
 		y++;
@@ -117,24 +117,24 @@ int	key_hook(int keycode, t_vars *mlx)
 	if (keycode == 124)
 	{
 		printf ("right key pressed\n");
-		if (i < mlx->map_x && mlx->map[j][i + 1] != '1')
+		if (i < mlx->map_x && mlx->m[j][i + 1] != '1')
 		{
-			mlx->map[j][i] = '0';
+			mlx->m[j][i] = '0';
 			i++;
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		}
 		else
-			mlx->map[j][i] = 'P';
+			mlx->m[j][i] = 'P';
 		y = 0;
 		while (y < (mlx->map_y))
 		{
 			x = 0;
 		while (x < (mlx->map_x))
 		{
-			write(fd_rw, &mlx->map[y][x], 1);
+			write(fd_rw, &mlx->m[y][x], 1);
 			if(x == (mlx->map_x -1))
 				write(fd_rw, "\n", 1);
-			printf("map[%d][%d]: %d\n", y, x, mlx->map[y][x]);
+			printf("map[%d][%d]: %d\n", y, x, mlx->m[y][x]);
 			x++;
 		}
 		y++;

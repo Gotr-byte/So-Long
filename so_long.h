@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/05 19:45:18 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:36:34 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_vars
 	void	*tree;
 	void	*exit;
 	void	*tulecie;
-	char	**map;
+	char	**m;
 	int		num_collectables;
 	int		map_x;
 	int		map_y;
@@ -51,6 +51,6 @@ void	check_rect(t_vars vars);
 void	num_characters(t_vars vars);
 void	num_exits(t_vars vars);
 int		num_collectables(t_vars vars);
-int		check_path(t_vars vars, int x, int y, int num_collectables_tmp);
+int		check_path(t_vars vars, int x, int y, int num_collect_tmp);
 int		check_path_exit(t_vars vars, int x, int y, int num_exit);
 #endif
