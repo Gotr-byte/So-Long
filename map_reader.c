@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:29:12 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/04 20:31:43 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:39:50 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,3 @@ char	**map_reader(void)
 	close(fd_to_read);
 	return (map);
 }
-
-// void	**map_refresh(t_vars mlx)
-// {
-// 	char		**map_tmp;
-// 	int			x;
-// 	int			y;
-
-// 	map_tmp = **map_reader();
-// 	y = 0;
-// 	while (y < mlx.map_y)
-// 	{
-// 		x = 0;
-// 		while (x < (mlx.map_x))
-// 		{
-// 			write(fd_rw, &mlx.map[y][x], 1);
-// 			if (x == (mlx.map_x -1))
-// 				write(fd_rw, "\n", 1);
-// 			printf("map[%d][%d]: %d\n", y, x, mlx.map[y][x]);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	liberator(map_tmp, mlx->map_y);
-// }
