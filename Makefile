@@ -30,7 +30,8 @@ SRCFILES := so_long.c \
 			liberator.c \
 			map_checker.c \
 			map_checker_ii.c \
-			check_path.c
+			check_path.c \
+			character_find.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:23:52 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/06 11:39:03 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:32:35 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,3 +151,32 @@ void	num_exits(t_vars vars)
 		exit (2);
 	}
 }
+
+// void	invalid_values(t_vars vars)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	y = 0;
+// 	while (y < vars.map_y)
+// 	{
+// 		x = 0;
+// 		while (x < vars.map_x)
+// 		{
+// 			if (vars.m[y][x] == 'C')
+// 				x++;
+// 			if (vars.m[y][x] == 'E')
+// 				x++;
+// 			if (vars.m[y][x] == '1')
+// 				x++;
+// 			if (vars.m[y][x] == '0')
+// 				x++;
+// 			if (vars.m[y][x] == 'C' && vars.m[y][x] == 'C' && vars.m[y][x] == 'C' && vars.m[y][x] == 'C')
+// 			write(2, "Map error: invalid values\n", 27);
+// 			exit(2);
+// 		}
+// 		y++;
+// 	}
+// 	return ;
+// }
