@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 18:44:16 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:45:02 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	full_map_check(t_vars *vars)
 		write (2, "Map error: no valid path\n", 26);
 		exit (2);
 	}
-	vars->num_collectables = tmp_collect;
+	// vars->num_collectables = tmp_collect;
 	// printf("tmp_collect: %d\n", tmp_collect);
 	// printf("num_collect: %d\n", vars->num_collectables);
 	// printf("number of accesible exits: %d\n", num_exit);

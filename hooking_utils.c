@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:49:55 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 18:17:36 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:43:01 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	move_right(t_vars *mlx, int j, int i)
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
 		printf("to collect: %d\n", mlx->num_collectables);
-		// if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
-		// 	destructor(mlx);
-		// if (mlx->m[j][i] == 'N')
-		// 	destructor(mlx);
+		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
+			destructor(mlx);
+		if (mlx->m[j][i] == 'N')
+			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
 		return (1);
@@ -78,10 +78,10 @@ int	move_left(t_vars *mlx, int j, int i)
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
 		printf("to collect: %d\n", mlx->num_collectables);
-		// if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
-		// 	destructor(mlx);
-		// if (mlx->m[j][i] == 'N')
-		// 	destructor(mlx);
+		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
+			destructor(mlx);
+		if (mlx->m[j][i] == 'N')
+			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
 		return (1);
@@ -104,10 +104,10 @@ int	move_up(t_vars *mlx, int j, int i)
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
 		printf("to collect: %d\n", mlx->num_collectables);
-		// if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
-		// 	destructor(mlx);
-		// if (mlx->m[j][i] == 'N')
-		// 	destructor(mlx);
+		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
+			destructor(mlx);
+		if (mlx->m[j][i] == 'N')
+			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
 		return (1);
@@ -130,10 +130,10 @@ int	move_down(t_vars *mlx, int j, int i)
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
 		printf("to collect: %d\n", mlx->num_collectables);
-		// if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
-		// 	destructor(mlx);
-		// if (mlx->m[j][i] == 'N')
-		// 	destructor(mlx);
+		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
+			destructor(mlx);
+		if (mlx->m[j][i] == 'N')
+			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
 		return (1);

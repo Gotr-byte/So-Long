@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 18:44:42 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:51:58 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	key_hook(int keycode, t_vars *mlx)
 		i = character_pos_x();
 		j = character_pos_y();
 		gate = 1;
-		mlx->m = map_reader();
-		mlx->map_x = map_width();
-		mlx->map_y = map_height();
-		mlx->num_collectables = num_collect_hook(mlx);
+		// mlx->m = map_reader();
+		// mlx->map_x = map_width();
+		// mlx->map_y = map_height();
+		// mlx->num_collectables = num_collect_hook(mlx);
 	}
 	if (keycode)
 	{
@@ -82,43 +82,48 @@ int	key_hook(int keycode, t_vars *mlx)
 	return (0);
 }
 
-// int	loop_hook(t_vars *mlx)
-// {
-// 	int x;
-// 	int y;
-// 	static int i;
+int	loop_hook(t_vars *mlx)
+{
+	int x;
+	int y;
+	static int i;
 
-// 	usleep(65800);
+	usleep(65800);
 
-// 	// mlx->m = map_reader();
-// 	y = 0;
-// 	while (y < (mlx->map_y))
-// 	{
-// 		x = 0;
-// 		while (x < (mlx->map_x))
-// 		{
-// 			if (mlx->m[y][x] == 'N')
-// 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	i++;
-// 	while (y < (mlx->map_y))
-// 	{
-// 		x = 0;
-// 		while (x < (mlx->map_x))
-// 		{
-// 			if (mlx->m[y][x] == 'N')
-// 			{
-// 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	if (i == 1)
-// 		i = 0;
-
-// 	return (0);
-// }
+	// mlx->m = map_reader();
+	if(i == 0)
+	{
+	y = 0;
+	while (y < (mlx->map_y))
+	{
+		x = 0;
+		while (x < (mlx->map_x))
+		{
+			if (mlx->m[y][x] == 'N')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
+			x++;
+		}
+		y++;
+	}	
+	}
+	i++;
+	if (i == 2)
+	{
+		while (y < (mlx->map_y))
+		{
+			x = 0;
+			while (x < (mlx->map_x))
+			{
+				if (mlx->m[y][x] == 'N')
+				{
+					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
+				}
+				x++;
+			}
+			y++;
+		}
+	}
+	if (i > 2)
+		i = 0;
+	return (0);
+}

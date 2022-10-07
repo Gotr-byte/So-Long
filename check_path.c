@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:17:53 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 18:32:05 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:46:11 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 //add colectable count, change value to 1
 static int	move_reg(t_vars *vars, int x, int y)
 {
-	if (vars->m[y][x] == 'C')
+	if (vars->n[y][x] == 'C')
 	{
-		vars->m[y][x] = '1';
+		vars->n[y][x] = '1';
 		return (1);
 	}
-	vars->m[y][x] = '1';
+	vars->n[y][x] = '1';
 	return (0);
 }
 
 static int	move_reg_exit(t_vars *vars, int x, int y)
 {
-	if (vars->m[y][x] == 'E')
+	if (vars->o[y][x] == 'E')
 	{
-		vars->m[y][x] = '1';
+		vars->o[y][x] = '1';
 		return (1);
 	}
-	vars->m[y][x] = '1';
+	vars->o[y][x] = '1';
 	return (0);
 }
 
