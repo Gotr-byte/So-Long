@@ -6,3 +6,4 @@ Working on getting the map directly to the read and write function.
 Use a cross mask to check for path. 
 
 6102022 Create the array from the given map first. Afterwards operate on it then render the image.
+07102022 There is a problem with double windows.

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:40:50 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/06 19:42:48 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:43:36 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	err_msg_exits(void)
 	exit (2);
 }
 
-void	num_exits(t_vars vars)
+void	num_exits(t_vars *vars)
 {
 	int		x;
 	int		y;
@@ -27,12 +27,12 @@ void	num_exits(t_vars vars)
 	x = 0;
 	y = 0;
 	count = 0;
-	while (y < vars.map_y)
+	while (y < vars->map_y)
 	{
 		x = 0;
-		while (x < vars.map_x)
+		while (x < vars->map_x)
 		{
-			if (vars.m[y][x] == 'E')
+			if (vars->m[y][x] == 'E')
 				count++;
 			if (count > 1)
 				err_msg_exits();
@@ -54,7 +54,7 @@ static void	err_msg_many(void)
 }
 
 //checks if there is one character value in the map
-void	num_characters(t_vars vars)
+void	num_characters(t_vars *vars)
 {
 	int		x;
 	int		y;
@@ -63,12 +63,12 @@ void	num_characters(t_vars vars)
 	x = 0;
 	y = 0;
 	count = 0;
-	while (y < vars.map_y)
+	while (y < vars->map_y)
 	{
 		x = 0;
-		while (x < vars.map_x)
+		while (x < vars->map_x)
 		{
-			if (vars.m[y][x] == 'P')
+			if (vars->m[y][x] == 'P')
 				count++;
 			if (count > 1)
 				err_msg_many();

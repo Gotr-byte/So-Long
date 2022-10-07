@@ -24,16 +24,17 @@ NAME := so_long
 LIBFT_DIR = libft/
 LIBFT_EXEC = ./libft/libft.a
 SRCFILES := so_long.c \
-			get_next_line.c \
-			get_next_line_utils.c \
 			map_reader.c \
-			liberator.c \
 			map_checker.c \
 			map_checker_ii.c \
 			map_checker_iii.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			liberator.c \
 			check_path.c \
 			character_find.c \
-			hooking.c
+			hooking.c \
+			hooking_utils.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

@@ -6,11 +6,34 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/06 20:31:28 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:44:42 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
+
+int	num_collect_hook(t_vars *vars)
+{
+	int		x;
+	int		y;
+	int		count;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	while (y < vars->map_y)
+	{
+		x = 0;
+		while (x < vars->map_x)
+		{
+			if (vars->m[y][x] == 'C')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
+}
 
 void	destructor(t_vars *mlx)
 {
@@ -18,6 +41,7 @@ void	destructor(t_vars *mlx)
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	exit (0);
 }
+
 
 //find a diff way to use the file descriptors
 // first rewrite from the map to the new map file which is rewritable
@@ -27,9 +51,6 @@ int	key_hook(int keycode, t_vars *mlx)
 	static int	i;
 	static int	j;
 	static int	gate;
-	static int	collected;
-	int			x;
-	int			y;
 
 	if (gate != 1)
 	{
@@ -37,7 +58,9 @@ int	key_hook(int keycode, t_vars *mlx)
 		j = character_pos_y();
 		gate = 1;
 		mlx->m = map_reader();
-		mlx->num_collectables = num_collectables(*mlx);
+		mlx->map_x = map_width();
+		mlx->map_y = map_height();
+		mlx->num_collectables = num_collect_hook(mlx);
 	}
 	if (keycode)
 	{
@@ -48,104 +71,54 @@ int	key_hook(int keycode, t_vars *mlx)
 		destructor(mlx);
 	}
 	if (keycode == 126)
-	{
-		printf ("up key pressed\n");
-		if (j > 0 && mlx->m[j - 1][i] != '1')
-		{
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = '0';
-			j--;
-			if (mlx->m[j][i] == 'C')
-				collected++;
-			printf("collected: %d\n", collected);
-			printf("to collect: %d\n", mlx->num_collectables);
-			if (mlx->m[j][i] == 'E' && collected == mlx->num_collectables)
-				destructor(mlx);
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = 'P';
-		}
-		else
-			mlx->m[j][i] = 'P';
-	}
+		j = j - move_up(mlx, j, i);
 	if (keycode == 125)
-	{
-		printf ("down key pressed\n");
-		if (j < mlx->map_y && mlx->m[j + 1][i] != '1')
-		{
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = '0';
-			j++;
-			if (mlx->m[j][i] == 'C')
-				collected++;
-			printf("collected: %d\n", collected);
-			printf("to collect: %d\n", mlx->num_collectables);
-			if (mlx->m[j][i] == 'E' && collected == mlx->num_collectables)
-				destructor(mlx);
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = 'P';
-		}
-		else
-			mlx->m[j][i] = 'P';
-	}
+		j = j + move_down(mlx, j, i);
 	if (keycode == 123)
-	{
-		printf ("left key pressed\n");
-		if (i > 0 && mlx->m[j][i - 1] != '1')
-		{
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = '0';
-			i--;
-			if (mlx->m[j][i] == 'C')
-				collected++;
-			printf("collected: %d\n", collected);
-			printf("to collect: %d\n", mlx->num_collectables);
-			if (mlx->m[j][i] == 'E' && collected == mlx->num_collectables)
-				destructor(mlx);
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = 'P';
-		}
-		else
-			mlx->m[j][i] = 'P';
-	}
+		i = i - move_left(mlx, j, i);
 	if (keycode == 124)
-	{
-		printf ("right key pressed\n");
-		if (i < mlx->map_x && mlx->m[j][i + 1] != '1')
-		{
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = '0';
-			i++;
-			if (mlx->m[j][i] == 'C')
-				collected++;
-			printf("collected: %d\n", collected);
-			printf("to collect: %d\n", mlx->num_collectables);
-			if (mlx->m[j][i] == 'E' && collected == mlx->num_collectables)
-				destructor(mlx);
-			if (mlx->m[j][i] != 'E')
-				mlx->m[j][i] = 'P';
-		}
-		else
-			mlx->m[j][i] = 'P';
-	}
-	y = 0;
-	while (y < (mlx->map_y))
-	{
-		x = 0;
-		while (x < (mlx->map_x))
-		{
-			if (mlx->m[y][x] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tree, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tulecie, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'E')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->exit, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'P')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->rock, x * GRID, y * GRID);
-			x++;
-		}
-		y++;
-	}
+		i = i + move_right(mlx, j, i);
+	make_image(mlx);
 	return (0);
 }
+
+// int	loop_hook(t_vars *mlx)
+// {
+// 	int x;
+// 	int y;
+// 	static int i;
+
+// 	usleep(65800);
+
+// 	// mlx->m = map_reader();
+// 	y = 0;
+// 	while (y < (mlx->map_y))
+// 	{
+// 		x = 0;
+// 		while (x < (mlx->map_x))
+// 		{
+// 			if (mlx->m[y][x] == 'N')
+// 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	i++;
+// 	while (y < (mlx->map_y))
+// 	{
+// 		x = 0;
+// 		while (x < (mlx->map_x))
+// 		{
+// 			if (mlx->m[y][x] == 'N')
+// 			{
+// 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	if (i == 1)
+// 		i = 0;
+
+// 	return (0);
+// }
