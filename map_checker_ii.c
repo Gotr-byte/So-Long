@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:23:52 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 17:36:39 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:55:14 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	invalid_values(t_vars *vars)
 		while (x < vars->map_x)
 		{
 			if (vars->m[y][x] != 'C' && vars->m[y][x] != 'E' && \
-			vars->m[y][x] != 'P' && vars->m[y][x] != '0' && vars->m[y][x] != '1')
+			vars->m[y][x] != 'P' && vars->m[y][x] != '0' && \
+			vars->m[y][x] != '1' && vars->m[y][x] != 'N')
 			{
 				write(2, "Map error: invalid values\n", 27);
 				exit(2);

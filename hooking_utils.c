@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:49:55 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 19:43:01 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:03:50 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	make_image(t_vars *mlx)
 		x = 0;
 		while (x < (mlx->map_x))
 		{
-			if (mlx->m[y][x] == '0')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
+			// if (mlx->m[y][x] == '0')
+			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
 			// else if (mlx->m[y][x] == 'N')
 				// mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == '1')
+			if (mlx->m[y][x] == '1')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tree, x * GRID, y * GRID);
 			else if (mlx->m[y][x] == 'C')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tulecie, x * GRID, y * GRID);

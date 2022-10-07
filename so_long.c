@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 19:45:02 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:56:03 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,8 @@ int	main(void)
 	full_map_check(vars);
 	// vars = loader(vars);
 	vars->win = mlx_new_window(vars->mlx, vars->map_x * GRID, vars->map_y * GRID, "Blumenfeld");
-	
 	mlx_key_hook(vars->win, key_hook, vars);
-	// mlx_loop_hook(vars->mlx, loop_hook, &vars);
+	mlx_loop_hook(vars->mlx, loop_hook, vars);
 	// liberator(vars->m, vars->map_y);
 	mlx_loop(vars->mlx);
 }

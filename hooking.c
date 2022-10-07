@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 19:51:58 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:01:08 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ int	loop_hook(t_vars *mlx)
 	usleep(65800);
 
 	// mlx->m = map_reader();
-	if(i == 0)
-	{
 	y = 0;
 	while (y < (mlx->map_y))
 	{
@@ -104,26 +102,9 @@ int	loop_hook(t_vars *mlx)
 			x++;
 		}
 		y++;
-	}	
 	}
 	i++;
 	if (i == 2)
-	{
-		while (y < (mlx->map_y))
-		{
-			x = 0;
-			while (x < (mlx->map_x))
-			{
-				if (mlx->m[y][x] == 'N')
-				{
-					mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
-				}
-				x++;
-			}
-			y++;
-		}
-	}
-	if (i > 2)
 		i = 0;
 	return (0);
 }
