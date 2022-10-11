@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 13:55:45 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:59:13 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	key_hook(int keycode, t_vars *mlx)
 		i = i + move_right(mlx, j, i);
 	return (0);
 }
-void map_value_rotation(t_vars	*mlx)
+
+void	map_value_rotation(t_vars	*mlx)
 {
 	int	x;
 	int	y;
@@ -105,37 +106,4 @@ void map_value_rotation(t_vars	*mlx)
 		}
 		y++;
 	}
-}
-
-int	loop_hook(t_vars *mlx)
-{
-	int			x;
-	int			y;
-	static int	i;
-
-	make_image(mlx);
-	usleep(65800);
-	map_value_rotation(mlx);
-	y = 0;
-	while (y < (mlx->map_y))
-	{
-		x = 0;
-		while (x < (mlx->map_x))
-		{
-			if (mlx->m[y][x] == 'N')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[0], x * G, y * G);
-			if (mlx->m[y][x] == 'O')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * G, y * G);
-			if (mlx->m[y][x] == 'M')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[1], x * G, y * G);
-			if (mlx->m[y][x] == 'U')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * G, y * G);
-			x++;
-		}
-		y++;
-	}
-	i++;
-	if (i == 2)
-		i = 0;
-	return (0);
 }

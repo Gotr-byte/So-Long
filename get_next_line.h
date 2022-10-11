@@ -6,12 +6,13 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:35:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/09/29 16:44:52 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:59:30 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE 4
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -19,7 +20,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#define BUFFER_SIZE 4
 
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:29:12 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 10:55:58 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:48:56 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,26 @@ int	map_width(void)
 
 char	**map_reader(void)
 {
-	char		**map;
-	int		map_y;
-	int		map_x;
-	int		fd_to_read;
-	char	*map_data;
-	int 	i;
-	int 	j;
+	t_map	r;
 
-	map_x = map_width();
-	map_y = map_height();
-	fd_to_read = open("map.ber", O_RDONLY);
-	map = (char **)ft_calloc(map_y, sizeof(char *));
-	j = 0;
-	while (j < (map_y))
+	r.map_x = map_width();
+	r.map_y = map_height();
+	r.fd_to_read = open("map.ber", O_RDONLY);
+	r.map = (char **)ft_calloc(r.map_y, sizeof(char *));
+	r.j = 0;
+	while (r.j < (r.map_y))
 	{
-		i = 0;
-		map_data = get_next_line(fd_to_read);
-		map[j] = (char *)ft_calloc(map_x, sizeof(char));
-		while (i < (map_x))
-		{	
-			map[j][i] = map_data[i];
-			i++;
+		r.i = 0;
+		r.map_data = get_next_line(r.fd_to_read);
+		r.map[r.j] = (char *)ft_calloc(r.map_x, sizeof(char));
+		while (r.i < (r.map_x))
+		{
+			r.map[r.j][r.i] = r.map_data[r.i];
+			r.i++;
 		}
-		free(map_data);
-		j++;
+		free(r.map_data);
+		r.j++;
 	}
-	close(fd_to_read);
-	return (map);
+	close(r.fd_to_read);
+	return (r.map);
 }

@@ -6,20 +6,19 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:15:35 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:59:42 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "./libft/libft.h"
-# include "./mlx/mlx.h"
-# include "./get_next_line.h"
-# include <stdio.h>
-# include <unistd.h>
 # define G 48
 # define NULL_VAL 1
 # define TRUE 1
+# include "./libft/libft.h"
+# include "./mlx/mlx.h"
+# include "./get_next_line.h"
+# include <unistd.h>
 
 typedef struct s_vars
 {
@@ -38,6 +37,17 @@ typedef struct s_vars
 	int		map_x;
 	int		map_y;
 }t_vars;
+
+typedef struct s_map_reader
+{
+	char	**map;
+	int		map_y;
+	int		map_x;
+	int		fd_to_read;
+	char	*map_data;
+	int		i;
+	int		j;
+}t_map;
 
 int		key_hook(int keycode, t_vars *mlx);
 void	destructor(t_vars *mlx);
@@ -69,4 +79,5 @@ int		num_collect_hook(t_vars *vars);
 void	make_image(t_vars *mlx);
 t_vars	*img_load(t_vars	*vars);
 t_vars	*img_load_rock(t_vars	*vars);
+void	map_value_rotation(t_vars	*mlx);
 #endif

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:12:25 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:13:55 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:25:05 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_vars	*img_load_tree(t_vars	*vars)
 	int		img_height;
 
 	tree_path = "./xpm/tree.xpm";
-	vars->tree = mlx_xpm_file_to_image(vars->mlx,\
+	vars->tree = mlx_xpm_file_to_image(vars->mlx, \
 	tree_path, &img_width, &img_height);
 	return (vars);
 }
@@ -62,19 +62,21 @@ t_vars	*img_load_tulecie(t_vars	*vars)
 
 t_vars	*img_load(t_vars	*vars)
 {
-	char	*warlock_path = "./xpm/enemy_sprite_1.xpm";
-	char	*warlock_path_un = "./xpm/enemy_sprite_6.xpm";
+	char	*warlock_path;
+	char	*warlock_path_un;
 	int		img_width;
 	int		img_height;
 
+	warlock_path = "./xpm/enemy_sprite_1.xpm";
+	warlock_path_un = "./xpm/enemy_sprite_6.xpm";
 	vars = img_load_rock(vars);
 	vars = img_load_grass(vars);
 	vars = img_load_exit(vars);
 	vars = img_load_tree(vars);
 	vars = img_load_tulecie(vars);
-	vars->warlock[0] = mlx_xpm_file_to_image(vars->mlx,\
+	vars->warlock[0] = mlx_xpm_file_to_image(vars->mlx, \
 	warlock_path, &img_width, &img_height);
-	vars->warlock[1] = mlx_xpm_file_to_image(vars->mlx,\
+	vars->warlock[1] = mlx_xpm_file_to_image(vars->mlx, \
 	warlock_path_un, &img_width, &img_height);
 	return (vars);
 }

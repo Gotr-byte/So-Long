@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:17:53 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:17:17 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:23:25 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	check_path(t_vars *v, int x, int y, int num_collect_tmp)
 		num_collect_tmp = num_collect_tmp + move_reg(v, x, y);
 		num_collect_tmp = check_path(v, x - 1, y, num_collect_tmp);
 	}
-	if (v->n[y + 1][x] == '0' || v->n[y + 1][x] == 'C'|| v->n[y][x + 1] == 'E')
+	if (v->n[y + 1][x] == '0' || v->n[y + 1][x] == 'C' || v->n[y][x + 1] == 'E')
 	{
 		num_collect_tmp = num_collect_tmp + move_reg(v, x, y);
 		num_collect_tmp = check_path(v, x, y + 1, num_collect_tmp);
 	}
-	if (v->n[y - 1][x] == '0' || v->n[y - 1][x] == 'C'|| v->n[y][x + 1] == 'E')
+	if (v->n[y - 1][x] == '0' || v->n[y - 1][x] == 'C' || v->n[y][x + 1] == 'E')
 	{
 		num_collect_tmp = num_collect_tmp + move_reg(v, x, y);
 		num_collect_tmp = check_path(v, x, y - 1, num_collect_tmp);

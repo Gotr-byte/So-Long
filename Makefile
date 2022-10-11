@@ -36,7 +36,8 @@ SRCFILES := so_long.c \
 			hooking.c \
 			hooking_utils.c \
 			img_load.c \
-			img_load_utils.c
+			img_load_utils.c \
+			loop_hooking.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall
