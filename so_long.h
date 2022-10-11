@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:59:42 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:10:13 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 # include "./get_next_line.h"
+# include "./ft_printf.h"
 # include <unistd.h>
 
 typedef struct s_vars

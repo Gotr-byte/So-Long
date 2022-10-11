@@ -37,7 +37,15 @@ SRCFILES := so_long.c \
 			hooking_utils.c \
 			img_load.c \
 			img_load_utils.c \
-			loop_hooking.c
+			loop_hooking.c \
+			ft_printf.c \
+			ft_itoa_xx.c \
+			ft_itoa_x.c \
+			ft_itoa_lu.c \
+			ft_putstr_i.c \
+			adr_hex.c \
+			ft_putchar_i.c \
+			flag.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

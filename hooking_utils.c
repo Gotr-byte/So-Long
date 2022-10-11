@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:49:55 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:49:57 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:16:24 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	make_image(t_vars *m)
 
 int	move_right(t_vars *mlx, int j, int i)
 {
-	printf ("right key pressed\n");
+	ft_printf ("right key pressed\n");
 	if (i < mlx->map_x && mlx->m[j][i + 1] != '1')
 	{
 		if (mlx->m[j][i] != 'E')
@@ -51,7 +51,7 @@ int	move_right(t_vars *mlx, int j, int i)
 		i++;
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
-		printf("to collect: %d\n", mlx->num_collectables);
+		ft_printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
 		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
@@ -70,7 +70,7 @@ int	move_right(t_vars *mlx, int j, int i)
 
 int	move_left(t_vars *mlx, int j, int i)
 {
-	printf ("left key pressed\n");
+	ft_printf ("left key pressed\n");
 	if (i < mlx->map_x && mlx->m[j][i - 1] != '1')
 	{
 		if (mlx->m[j][i] != 'E')
@@ -78,7 +78,7 @@ int	move_left(t_vars *mlx, int j, int i)
 		i--;
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
-		printf("to collect: %d\n", mlx->num_collectables);
+		ft_printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
 		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
@@ -97,7 +97,7 @@ int	move_left(t_vars *mlx, int j, int i)
 
 int	move_up(t_vars *mlx, int j, int i)
 {
-	printf ("up key pressed\n");
+	ft_printf ("up key pressed\n");
 	if (j > 0 && mlx->m[j - 1][i] != '1')
 	{
 		if (mlx->m[j][i] != 'E')
@@ -105,7 +105,7 @@ int	move_up(t_vars *mlx, int j, int i)
 		j--;
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
-		printf("to collect: %d\n", mlx->num_collectables);
+		ft_printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
 		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
@@ -124,7 +124,7 @@ int	move_up(t_vars *mlx, int j, int i)
 
 int	move_down(t_vars *mlx, int j, int i)
 {
-	printf ("down key pressed\n");
+	ft_printf ("down key pressed\n");
 	if (j > 0 && mlx->m[j + 1][i] != '1')
 	{
 		if (mlx->m[j][i] != 'E')
@@ -132,7 +132,7 @@ int	move_down(t_vars *mlx, int j, int i)
 		j++;
 		if (mlx->m[j][i] == 'C')
 			mlx->num_collectables--;
-		printf("to collect: %d\n", mlx->num_collectables);
+		ft_printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
 		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \

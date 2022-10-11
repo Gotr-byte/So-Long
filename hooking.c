@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 14:59:13 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:15:05 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	print_num_moves(t_vars	*mlx, int xp)
 	char	*tmp;
 
 	tmp = ft_itoa(xp + 1);
+	ft_printf("made: %d moves\n", xp + 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, \
 	mlx->grass, G * (mlx->map_x + 2), 10);
 	mlx_string_put(mlx->mlx, mlx->win, G * \
