@@ -6,19 +6,11 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:04 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 12:26:01 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:15:21 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
-
-
-//need movement hookers
-// we should free the whole array it has some leaks
-
-// void init_assets(t_vars vars)
-// {
-// }
 
 void	full_map_check(t_vars *vars)
 {
@@ -47,30 +39,12 @@ void	full_map_check(t_vars *vars)
 t_vars	*preloader(void)
 {
 	t_vars	*vars;
-	char	*grass_path = "./xpm/grass.xpm";
-	char	*tree_path = "./xpm/tree.xpm";
-	char	*tulecie_path = "./xpm/tulecie.xpm";
-	char	*exit_path = "./xpm/exit.xpm";
-	char	*rock_path = "./xpm/rock.xpm";
-	char	*warlock_path = "./xpm/enemy_sprite_1.xpm";
-	char	*warlock_path_un = "./xpm/enemy_sprite_6.xpm";
-	int		img_width;
-	int		img_height;
 
 	vars = (t_vars *)ft_calloc(1, sizeof(t_vars));
 	vars->mlx = mlx_init();
 	vars->m = map_reader();
 	vars->n = map_reader();
 	vars->o = map_reader();
-	vars->rock = mlx_xpm_file_to_image(vars->mlx, rock_path, &img_width, &img_height);
-	vars->exit = mlx_xpm_file_to_image(vars->mlx, exit_path, &img_width, &img_height);
-	vars->grass = mlx_xpm_file_to_image(vars->mlx, grass_path, &img_width, &img_height);
-	vars->tree = mlx_xpm_file_to_image(vars->mlx, tree_path, &img_width, &img_height);
-	vars->tulecie = mlx_xpm_file_to_image(vars->mlx, tulecie_path, &img_width, &img_height);
-	vars->rock = mlx_xpm_file_to_image(vars->mlx, rock_path, &img_width, &img_height);
-	vars->grass = mlx_xpm_file_to_image(vars->mlx, grass_path, &img_width, &img_height);
-	vars->warlock[0] = mlx_xpm_file_to_image(vars->mlx, warlock_path, &img_width, &img_height);
-	vars->warlock[1] = mlx_xpm_file_to_image(vars->mlx, warlock_path_un, &img_width, &img_height);
 	vars->map_x = map_width();
 	vars->map_y = map_height();
 	return (vars);
@@ -81,9 +55,10 @@ int	main(void)
 	t_vars	*vars;
 
 	vars = preloader();
+	vars = img_load(vars);
 	full_map_check(vars);
 	vars->win = mlx_new_window(vars->mlx, \
-	(vars->map_x + 3) * GRID, vars->map_y * GRID, "Blumenfeld");
+	(vars->map_x + 3) * G, vars->map_y * G, "Blumenfeld");
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_loop_hook(vars->mlx, loop_hook, vars);
 	mlx_loop(vars->mlx);

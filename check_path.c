@@ -6,13 +6,12 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:17:53 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 19:46:11 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:17:17 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//add colectable count, change value to 1
 static int	move_reg(t_vars *vars, int x, int y)
 {
 	if (vars->n[y][x] == 'C')
@@ -35,7 +34,6 @@ static int	move_reg_exit(t_vars *vars, int x, int y)
 	return (0);
 }
 
-//pass starting positions
 int	check_path(t_vars *v, int x, int y, int num_collect_tmp)
 {
 	if (v->n[y][x + 1] == '0' || v->n[y][x + 1] == 'C' || v->n[y][x + 1] == 'E')
@@ -61,10 +59,6 @@ int	check_path(t_vars *v, int x, int y, int num_collect_tmp)
 	num_collect_tmp = num_collect_tmp + move_reg(v, x, y);
 	return (num_collect_tmp);
 }
-
-// int	go_east(t_vars vars, int x, int y, int num_exit)
-// {
-// }
 
 int	check_path_exit(t_vars *v, int x, int y, int num_exit)
 {

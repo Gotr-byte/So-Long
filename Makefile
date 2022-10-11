@@ -34,7 +34,9 @@ SRCFILES := so_long.c \
 			check_path.c \
 			character_find.c \
 			hooking.c \
-			hooking_utils.c
+			hooking_utils.c \
+			img_load.c \
+			img_load_utils.c
 
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall

@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 12:26:54 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:55:45 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,19 @@ void	destructor(t_vars *mlx)
 	exit (0);
 }
 
+int	print_num_moves(t_vars	*mlx, int xp)
+{
+	char	*tmp;
 
-//find a diff way to use the file descriptors
-// first rewrite from the map to the new map file which is rewritable
-// the enemies stopped working, need to adjust the destructor / change the loop
+	tmp = ft_itoa(xp + 1);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, \
+	mlx->grass, G * (mlx->map_x + 2), 10);
+	mlx_string_put(mlx->mlx, mlx->win, G * \
+	(mlx->map_x + 2), 10, 0x00FF0000, tmp);
+	free(tmp);
+	return (1);
+}
+
 int	key_hook(int keycode, t_vars *mlx)
 {
 	static int	xp;
@@ -60,19 +69,9 @@ int	key_hook(int keycode, t_vars *mlx)
 		gate = 1;
 	}
 	if (keycode)
-	{
-		char *tmp;
-
-		tmp = ft_itoa(xp);
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, GRID * (mlx->map_x + 2), 10);
-		printf ("xp gained: %i\n", ++xp);
-		mlx_string_put(mlx->mlx, mlx->win, GRID * (mlx->map_x + 2), 10, 0x00FF0000, tmp);
-		free(tmp);
-	}
+		xp = xp + print_num_moves(mlx, xp);
 	if (keycode == 53)
-	{
 		destructor(mlx);
-	}
 	if (keycode == 126)
 		j = j - move_up(mlx, j, i);
 	if (keycode == 125)
@@ -81,17 +80,13 @@ int	key_hook(int keycode, t_vars *mlx)
 		i = i - move_left(mlx, j, i);
 	if (keycode == 124)
 		i = i + move_right(mlx, j, i);
-	make_image(mlx);
 	return (0);
 }
-
-int	loop_hook(t_vars *mlx)
+void map_value_rotation(t_vars	*mlx)
 {
-	int			x;
-	int			y;
-	static int	i;
+	int	x;
+	int	y;
 
-	usleep(65800);
 	y = 0;
 	while (y < (mlx->map_y))
 	{
@@ -110,6 +105,17 @@ int	loop_hook(t_vars *mlx)
 		}
 		y++;
 	}
+}
+
+int	loop_hook(t_vars *mlx)
+{
+	int			x;
+	int			y;
+	static int	i;
+
+	make_image(mlx);
+	usleep(65800);
+	map_value_rotation(mlx);
 	y = 0;
 	while (y < (mlx->map_y))
 	{
@@ -117,13 +123,13 @@ int	loop_hook(t_vars *mlx)
 		while (x < (mlx->map_x))
 		{
 			if (mlx->m[y][x] == 'N')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[0], x * GRID, y * GRID);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[0], x * G, y * G);
 			if (mlx->m[y][x] == 'O')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * G, y * G);
 			if (mlx->m[y][x] == 'M')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[1], x * GRID, y * GRID);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[1], x * G, y * G);
 			if (mlx->m[y][x] == 'U')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * G, y * G);
 			x++;
 		}
 		y++;

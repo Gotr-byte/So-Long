@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:47:21 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 18:36:08 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:15:35 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "./get_next_line.h"
 # include <stdio.h>
 # include <unistd.h>
-# define GRID 48
+# define G 48
 # define NULL_VAL 1
 # define TRUE 1
 
@@ -39,7 +39,6 @@ typedef struct s_vars
 	int		map_y;
 }t_vars;
 
-// int		key_hook(int keycode, t_vars *mlx);
 int		key_hook(int keycode, t_vars *mlx);
 void	destructor(t_vars *mlx);
 char	**map_reader(void);
@@ -67,4 +66,7 @@ int		move_left(t_vars *mlx, int j, int i);
 int		move_up(t_vars *mlx, int j, int i);
 int		move_down(t_vars *mlx, int j, int i);
 int		num_collect_hook(t_vars *vars);
+void	make_image(t_vars *mlx);
+t_vars	*img_load(t_vars	*vars);
+t_vars	*img_load_rock(t_vars	*vars);
 #endif

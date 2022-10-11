@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:59:25 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/06 13:05:58 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:16:54 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	ft_strchr_local(const char *s, int c)
 	return (0);
 }
 
-// the function doesn't check for the correct number of characters, it finds the first occurence 
-// of the character, need a wall of cheker functions for the map to work correctly
 int	character_pos_y(void)
 {
 	int		fd_to_read_height;

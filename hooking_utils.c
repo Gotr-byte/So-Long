@@ -6,35 +6,35 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:49:55 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/11 12:23:31 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:26:07 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
 
-void	make_image(t_vars *mlx)
+void	make_image(t_vars *m)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < (mlx->map_y))
+	while (y < (m->map_y))
 	{
 		x = 0;
-		while (x < (mlx->map_x))
+		while (x < (m->map_x))
 		{
-			// if (mlx->m[y][x] == '0')
-			mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
-			// else if (mlx->m[y][x] == 'N')
-				// mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock, x * GRID, y * GRID);
-			if (mlx->m[y][x] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tree, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->tulecie, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'E')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->exit, x * GRID, y * GRID);
-			else if (mlx->m[y][x] == 'P')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->rock, x * GRID, y * GRID);
+			mlx_put_image_to_window(m->mlx, m->win, m->grass, x * G, y * G);
+			if (m->m[y][x] == '1')
+				mlx_put_image_to_window(m->mlx, m->win, m->tree, x * G, y * G);
+			else if (m->m[y][x] == 'C')
+				mlx_put_image_to_window(m->mlx, \
+				m->win, m->tulecie, x * G, y * G);
+			else if (m->m[y][x] == 'E')
+				mlx_put_image_to_window(m->mlx, \
+				m->win, m->exit, x * G, y * G);
+			else if (m->m[y][x] == 'P')
+				mlx_put_image_to_window(m->mlx, \
+				m->win, m->rock, x * G, y * G);
 			x++;
 		}
 		y++;
@@ -54,7 +54,8 @@ int	move_right(t_vars *mlx, int j, int i)
 		printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
-		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' || mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
+		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
+		|| mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
 			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
@@ -80,7 +81,8 @@ int	move_left(t_vars *mlx, int j, int i)
 		printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
-		if (mlx->m[j][i] == 'N')
+		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
+		|| mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
 			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
@@ -106,7 +108,8 @@ int	move_up(t_vars *mlx, int j, int i)
 		printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
-		if (mlx->m[j][i] == 'N')
+		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
+		|| mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
 			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
@@ -132,7 +135,8 @@ int	move_down(t_vars *mlx, int j, int i)
 		printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
-		if (mlx->m[j][i] == 'N')
+		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' \
+		|| mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
 			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';
