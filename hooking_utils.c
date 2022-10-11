@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:49:55 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 20:03:50 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:23:31 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	move_right(t_vars *mlx, int j, int i)
 		printf("to collect: %d\n", mlx->num_collectables);
 		if (mlx->m[j][i] == 'E' && mlx->num_collectables == 0)
 			destructor(mlx);
-		if (mlx->m[j][i] == 'N')
+		if (mlx->m[j][i] == 'N' || mlx->m[j][i] == 'O' || mlx->m[j][i] == 'M' || mlx->m[j][i] == 'U')
 			destructor(mlx);
 		if (mlx->m[j][i] != 'E')
 			mlx->m[j][i] = 'P';

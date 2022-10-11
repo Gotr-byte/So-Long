@@ -6,7 +6,7 @@
 /*   By: pbiederm <pbiederm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:34:56 by pbiederm          #+#    #+#             */
-/*   Updated: 2022/10/07 20:01:08 by pbiederm         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:26:54 by pbiederm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	destructor(t_vars *mlx)
 
 //find a diff way to use the file descriptors
 // first rewrite from the map to the new map file which is rewritable
+// the enemies stopped working, need to adjust the destructor / change the loop
 int	key_hook(int keycode, t_vars *mlx)
 {
 	static int	xp;
@@ -57,14 +58,16 @@ int	key_hook(int keycode, t_vars *mlx)
 		i = character_pos_x();
 		j = character_pos_y();
 		gate = 1;
-		// mlx->m = map_reader();
-		// mlx->map_x = map_width();
-		// mlx->map_y = map_height();
-		// mlx->num_collectables = num_collect_hook(mlx);
 	}
 	if (keycode)
 	{
+		char *tmp;
+
+		tmp = ft_itoa(xp);
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, GRID * (mlx->map_x + 2), 10);
 		printf ("xp gained: %i\n", ++xp);
+		mlx_string_put(mlx->mlx, mlx->win, GRID * (mlx->map_x + 2), 10, 0x00FF0000, tmp);
+		free(tmp);
 	}
 	if (keycode == 53)
 	{
@@ -84,13 +87,11 @@ int	key_hook(int keycode, t_vars *mlx)
 
 int	loop_hook(t_vars *mlx)
 {
-	int x;
-	int y;
-	static int i;
+	int			x;
+	int			y;
+	static int	i;
 
 	usleep(65800);
-
-	// mlx->m = map_reader();
 	y = 0;
 	while (y < (mlx->map_y))
 	{
@@ -98,7 +99,31 @@ int	loop_hook(t_vars *mlx)
 		while (x < (mlx->map_x))
 		{
 			if (mlx->m[y][x] == 'N')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[i], x * GRID, y * GRID);
+				mlx->m[y][x] = 'O';
+			else if (mlx->m[y][x] == 'O')
+				mlx->m[y][x] = 'M';
+			else if (mlx->m[y][x] == 'M')
+				mlx->m[y][x] = 'U';
+			else if (mlx->m[y][x] == 'U')
+				mlx->m[y][x] = 'N';
+			x++;
+		}
+		y++;
+	}
+	y = 0;
+	while (y < (mlx->map_y))
+	{
+		x = 0;
+		while (x < (mlx->map_x))
+		{
+			if (mlx->m[y][x] == 'N')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[0], x * GRID, y * GRID);
+			if (mlx->m[y][x] == 'O')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
+			if (mlx->m[y][x] == 'M')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->warlock[1], x * GRID, y * GRID);
+			if (mlx->m[y][x] == 'U')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->grass, x * GRID, y * GRID);
 			x++;
 		}
 		y++;
